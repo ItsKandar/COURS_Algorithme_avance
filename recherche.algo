@@ -1,0 +1,34 @@
+FONCTIONS_UTILISEES
+VARIABLES
+  i EST_DU_TYPE NOMBRE
+  size EST_DU_TYPE NOMBRE
+  tab EST_DU_TYPE LISTE
+DEBUT_ALGORITHME
+  LIRE size
+  POUR i ALLANT_DE 0 A size
+    DEBUT_POUR
+    tab[i] PREND_LA_VALEUR round(random()*100)
+    FIN_POUR
+  POUR i ALLANT_DE 0 A size
+    DEBUT_POUR
+    AFFICHER " "
+    AFFICHER tab[i]
+    FIN_POUR
+  AFFICHER " "
+FIN_ALGORITHME
+
+// Faire recherche sequentielle d'une valeur demandé a l'user
+LIRE valeur
+trouve EST_DU_TYPE BOOLEEN
+POUR i ALLANT_DE 0 A size
+	DEBUT_POUR
+	SI tab[i] = valeur ALORS
+		DEBUT_SI
+		trouve PREND_LA_VALEUR VRAI
+		AFFICHER "La valeur", valeur, "a été trouvée à l'index", i
+		FIN_SI
+	FIN_POUR
+SI trouve = FAUX ALORS
+	DEBUT_SI
+	AFFICHER "La valeur", valeur, "n'a pas été trouvée dans le tableau"
+	FIN_SI

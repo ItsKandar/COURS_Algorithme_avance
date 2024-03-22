@@ -1,0 +1,45 @@
+FONCTIONS_UTILISEES
+VARIABLES
+  N EST_DU_TYPE NOMBRE
+  tableau EST_DU_TYPE LISTE
+  i EST_DU_TYPE NOMBRE
+  j EST_DU_TYPE NOMBRE
+  compteur EST_DU_TYPE NOMBRE
+  nouveauTableau EST_DU_TYPE LISTE
+  tableauReconstruit EST_DU_TYPE LISTE
+  nombreRedondance EST_DU_TYPE NOMBRE
+  nombre EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+    AFFICHER "Entrez la taille du tableau : "
+    LIRE N
+    POUR i ALLANT_DE 1 A N
+        DEBUT_POUR
+        tableau[i] PREND_LA_VALEUR round(random(0,10)*10)
+        FIN_POUR
+    AFFICHER tableau
+    compteur PREND_LA_VALEUR 1
+    POUR i ALLANT_DE 1 A N-1
+        DEBUT_POUR
+        SI (tableau[i] == tableau[i+1]) ALORS
+        DEBUT_SI
+        compteur PREND_LA_VALEUR compteur + 1
+        FIN_SI
+        SINON
+        DEBUT_SINON
+        nouveauTableau[AJOUTER] PREND_LA_VALEUR compteur
+        nouveauTableau[AJOUTER] PREND_LA_VALEUR tableau[i]
+        compteur PREND_LA_VALEUR 1
+        FIN_SINON
+        FIN_POUR
+    AFFICHER nouveauTableau
+    nombreRedondance PREND_LA_VALEUR 0
+    POUR i ALLANT_DE 1 A TAILLE_DE(nouveauTableau)
+        DEBUT_POUR
+        SI (nouveauTableau[i] > nombreRedondance) ALORS
+        DEBUT_SI
+        nombreRedondance PREND_LA_VALEUR nouveauTableau[i]
+        nombre PREND_LA_VALEUR nouveauTableau[i+1]
+        FIN_SI
+        FIN_POUR
+    AFFICHER "Le nombre avec la plus grande redondance est", nombre, " il est present ", nombreRedondance, " fois"
+FIN_ALGORITHME

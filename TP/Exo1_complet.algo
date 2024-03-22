@@ -1,0 +1,157 @@
+// a) Écrire un algorithme qui remplit un tableau de N entier de valeurs aléatoires comprises entre 0 et 10. N doit être demandé à l'utilisateur
+
+FONCTIONS_UTILISEES
+VARIABLES
+  N EST_DU_TYPE NOMBRE
+  tableau EST_DU_TYPE LISTE
+  i EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+  AFFICHER "Entrez la taille du tableau : "
+  LIRE N
+  POUR i ALLANT_DE 1 A N
+    DEBUT_POUR
+    tableau[i] PREND_LA_VALEUR round(random(0,10)*10)
+    FIN_POUR
+  AFFICHER tableau
+FIN_ALGORITHME
+
+// b) Écrire un algorithme qui met dans un nouveau tableau le nombre d'entier consécutif puis après ce
+nombre
+
+// Le script s'execute comme avant et genere un tableau de N entiers
+// Il faut parcourir le tableau et pour chaque entier, on regarde si l'entier suivant est le même
+// Si c'est le cas, on incrémente un compteur
+// Si ce n'est pas le cas, on ajoute le compteur et l'entier dans le nouveau tableau
+
+FONCTIONS_UTILISEES
+VARIABLES
+  N EST_DU_TYPE NOMBRE
+  tableau EST_DU_TYPE LISTE
+  i EST_DU_TYPE NOMBRE
+  j EST_DU_TYPE NOMBRE
+  compteur EST_DU_TYPE NOMBRE
+  nouveauTableau EST_DU_TYPE LISTE
+DEBUT_ALGORITHME
+    AFFICHER "Entrez la taille du tableau : "
+    LIRE N
+    POUR i ALLANT_DE 1 A N
+        DEBUT_POUR
+        tableau[i] PREND_LA_VALEUR round(random(0,10)*10)
+        FIN_POUR
+    AFFICHER tableau
+    compteur PREND_LA_VALEUR 1
+    POUR i ALLANT_DE 1 A N-1
+        DEBUT_POUR
+        SI (tableau[i] == tableau[i+1]) ALORS
+        DEBUT_SI
+        compteur PREND_LA_VALEUR compteur + 1
+        FIN_SI
+        SINON
+        DEBUT_SINON
+        nouveauTableau[AJOUTER] PREND_LA_VALEUR compteur
+        nouveauTableau[AJOUTER] PREND_LA_VALEUR tableau[i]
+        compteur PREND_LA_VALEUR 1
+        FIN_SINON
+        FIN_POUR
+    AFFICHER nouveauTableau
+FIN_ALGORITHME
+
+// c) Écrire un algorithme qui remet dans la version initiale
+
+// Le script s'execute comme avant et genere un tableau de N entiers ainsi que le tableau avec les entiers consécutifs
+// Il faut parcourir le tableau avec les entiers consécutifs et pour chaque entier, on ajoute le nombre d'entier consécutif fois l'entier dans le tableau reconstruit
+
+FONCTIONS_UTILISEES
+VARIABLES
+  N EST_DU_TYPE NOMBRE
+  tableau EST_DU_TYPE LISTE
+  i EST_DU_TYPE NOMBRE
+  j EST_DU_TYPE NOMBRE
+  compteur EST_DU_TYPE NOMBRE
+  nouveauTableau EST_DU_TYPE LISTE
+  tableauReconstruit EST_DU_TYPE LISTE
+DEBUT_ALGORITHME
+    AFFICHER "Entrez la taille du tableau : "
+    LIRE N
+    POUR i ALLANT_DE 1 A N
+        DEBUT_POUR
+        tableau[i] PREND_LA_VALEUR round(random(0,10)*10)
+        FIN_POUR
+    AFFICHER tableau
+    compteur PREND_LA_VALEUR 1
+    POUR i ALLANT_DE 1 A N-1
+        DEBUT_POUR
+        SI (tableau[i] == tableau[i+1]) ALORS
+        DEBUT_SI
+        compteur PREND_LA_VALEUR compteur + 1
+        FIN_SI
+        SINON
+        DEBUT_SINON
+        nouveauTableau[AJOUTER] PREND_LA_VALEUR compteur
+        nouveauTableau[AJOUTER] PREND_LA_VALEUR tableau[i]
+        compteur PREND_LA_VALEUR 1
+        FIN_SINON
+        FIN_POUR
+    AFFICHER nouveauTableau
+    POUR i ALLANT_DE 1 A TAILLE_DE(nouveauTableau)
+        DEBUT_POUR
+        POUR j ALLANT_DE 1 A nouveauTableau[i]
+            DEBUT_POUR
+            tableauReconstruit[AJOUTER] PREND_LA_VALEUR nouveauTableau[i+1]
+            FIN_POUR
+        FIN_POUR
+    AFFICHER tableauReconstruit
+FIN_ALGORITHME
+
+// d)  Écrire un algorithme qui compte la plus grande redondance d'un même nombre. Il faut afficher le nombre puis combien d'élément il y est de fois à la suite
+
+// Le script s'execute comme avant et genere les differents tableaux
+// Il faut parcourir le tableau avec les entiers consécutifs et pour chaque entier, on regarde si le nombre d'entier consécutif est plus grand que le nombre d'entier consécutif du nombre précédent
+// Si c'est le cas, on met à jour le nombre de redondance et le nombre
+// On affiche le nombre et le nombre de redondance
+
+FONCTIONS_UTILISEES
+VARIABLES
+  N EST_DU_TYPE NOMBRE
+  tableau EST_DU_TYPE LISTE
+  i EST_DU_TYPE NOMBRE
+  j EST_DU_TYPE NOMBRE
+  compteur EST_DU_TYPE NOMBRE
+  nouveauTableau EST_DU_TYPE LISTE
+  tableauReconstruit EST_DU_TYPE LISTE
+  nombreRedondance EST_DU_TYPE NOMBRE
+  nombre EST_DU_TYPE NOMBRE
+DEBUT_ALGORITHME
+    AFFICHER "Entrez la taille du tableau : "
+    LIRE N
+    POUR i ALLANT_DE 1 A N
+        DEBUT_POUR
+        tableau[i] PREND_LA_VALEUR round(random(0,10)*10)
+        FIN_POUR
+    AFFICHER tableau
+    compteur PREND_LA_VALEUR 1
+    POUR i ALLANT_DE 1 A N-1
+        DEBUT_POUR
+        SI (tableau[i] == tableau[i+1]) ALORS
+        DEBUT_SI
+        compteur PREND_LA_VALEUR compteur + 1
+        FIN_SI
+        SINON
+        DEBUT_SINON
+        nouveauTableau[AJOUTER] PREND_LA_VALEUR compteur
+        nouveauTableau[AJOUTER] PREND_LA_VALEUR tableau[i]
+        compteur PREND_LA_VALEUR 1
+        FIN_SINON
+        FIN_POUR
+    AFFICHER nouveauTableau
+    nombreRedondance PREND_LA_VALEUR 0
+    POUR i ALLANT_DE 1 A TAILLE_DE(nouveauTableau)
+        DEBUT_POUR
+        SI (nouveauTableau[i] > nombreRedondance) ALORS
+        DEBUT_SI
+        nombreRedondance PREND_LA_VALEUR nouveauTableau[i]
+        nombre PREND_LA_VALEUR nouveauTableau[i+1]
+        FIN_SI
+        FIN_POUR
+    AFFICHER "Le nombre avec la plus grande redondance est", nombre, " il est present ", nombreRedondance, " fois"
+FIN_ALGORITHME
