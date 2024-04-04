@@ -1,0 +1,197 @@
+// Devoir Maison algorithmie (B2)
+// Consignes :
+// A faire seul, sans ressource externe.
+// Il faut indiquer la classe de complexité pour chaque fonction.
+// Mettre des commentaires pour expliquer ce que vous voulez faire
+// Devoir à rendre pour le vendredi 5 avril à 9h45 au plus tard.
+// A faire sur feuille ou sur n'importe quel éditeur de texte (notepad++ par exemple)
+// Si vous avez besoin de fonction spécifique, il faut les écrire.
+// Exercice (les listes)
+// Définition: Une liste doublement chaînée est une liste dans laquelle chaque élément de la liste a
+// deux pointeurs .., l'un pointant sur son suivant et l'autre sur son précédent.
+// a) Écrire une structure permettant de stocker une liste d'entier doublement chaînée. (1 points)
+// b) Écrire une fonction permettant de créer une nouvelle liste avec sa 1ere valeur. (2 points)
+// c) Écrire une fonction permettant d'ajouter un élément en tête de liste. (2 points)
+// d) Écrire une fonction permettant d'ajouter un élément en fin de liste. (2 points)
+// e) Écrire une fonction permettant de supprimer un élément en tête de liste. (2 points)
+// f) Écrire une fonction permettant de supprimer en fin de liste. (2 points)
+// g) Écrire une fonction permettant de permuter deux éléments de la liste. (2 points)
+// h) Écrire une fonction permettant de retourner le nombre d’élément de la liste (1 points)
+// i) Écrire une fonction permettant d'inverser la liste. (3 points)
+// j) Écrire une fonction permettant de trier une liste dans l'ordre croissant. (3 points)
+
+FONCTIONS_UTILISEES  
+VARIABLES
+// a) Écrire une structure permettant de stocker une liste d'entier doublement chaînée. (1 point)
+STRUCTURE ListeDoublementChainee
+    entier valeur
+    ListeDoublementChainee* suivant
+    ListeDoublementChainee* precedent
+FIN_STRUCTURE
+
+// b) Écrire une fonction permettant de créer une nouvelle liste avec sa 1ere valeur. (2 points)
+FONCTION creerListe(entier premiereValeur) : ListeDoublementChainee
+    ListeDoublementChainee* nouvelleListe <- NOUVEAU ListeDoublementChainee
+    nouvelleListe.valeur <- premiereValeur
+    nouvelleListe.suivant <- NULL
+    nouvelleListe.precedent <- NULL
+    RETOURNER nouvelleListe
+FIN_FONCTION
+// Complexité : O(1)
+
+// c) Écrire une fonction permettant d'ajouter un élément en tête de liste. (2 points)
+FONCTION ajouterEnTete(liste : ListeDoublementChainee, entier valeur) : ListeDoublementChainee
+    ListeDoublementChainee* nouvelElement <- NOUVEAU ListeDoublementChainee
+    nouvelElement.valeur <- valeur
+    nouvelElement.suivant <- liste
+    nouvelElement.precedent <- NULL
+    SI liste != NULL ALORS
+        liste.precedent <- nouvelElement
+    FIN_SI
+    RETOURNER nouvelElement
+FIN_FONCTION
+// Complexité : O(1)
+
+// d) Écrire une fonction permettant d'ajouter un élément en fin de liste. (2 points)
+FONCTION ajouterEnFin(liste : ListeDoublementChainee, entier valeur) : ListeDoublementChainee
+    ListeDoublementChainee* nouvelElement <- NOUVEAU ListeDoublementChainee
+    nouvelElement.valeur <- valeur
+    nouvelElement.suivant <- NULL
+    SI liste = NULL ALORS
+        RETOURNER nouvelElement
+    SINON
+        ListeDoublementChainee* dernierElement <- liste
+        TANT_QUE dernierElement.suivant != NULL FAIRE
+            dernierElement <- dernierElement.suivant
+        FIN_TANT_QUE
+        dernierElement.suivant <- nouvelElement
+        nouvelElement.precedent <- dernierElement
+        RETOURNER liste
+    FIN_SI
+FIN_FONCTION
+// Complexité : O(n)
+
+// e) Écrire une fonction permettant de supprimer un élément en tête de liste. (2 points)
+FONCTION supprimerEnTete(liste : ListeDoublementChainee) : ListeDoublementChainee
+    SI liste = NULL ALORS
+        RETOURNER NULL
+    SINON
+        ListeDoublementChainee* nouvelElement <- liste.suivant
+        LIBERER(liste)
+        SI nouvelElement != NULL ALORS
+            nouvelElement.precedent <- NULL
+        FIN_SI
+        RETOURNER nouvelElement
+    FIN_SI
+FIN_FONCTION
+// Complexité : O(1)
+
+// f) Écrire une fonction permettant de supprimer en fin de liste. (2 points)
+FONCTION supprimerEnFin(liste : ListeDoublementChainee) : ListeDoublementChainee
+    SI liste = NULL ALORS
+        RETOURNER NULL
+    SINON
+        SI liste.suivant = NULL ALORS
+            LIBERER(liste)
+            RETOURNER NULL
+        SINON
+            ListeDoublementChainee* element <- liste
+            TANT_QUE element.suivant.suivant != NULL FAIRE
+                element <- element.suivant
+            FIN_TANT_QUE
+            LIBERER(element.suivant)
+            element.suivant <- NULL
+            RETOURNER liste
+        FIN_SI
+    FIN_SI
+FIN_FONCTION
+// Complexité : O(n)
+
+// g) Écrire une fonction permettant de permuter deux éléments de la liste. (2 points)
+FONCTION permuterElements(liste : ListeDoublementChainee, entier position1, entier position2) : ListeDoublementChainee
+    SI liste = NULL ALORS
+        RETOURNER NULL
+    SINON
+        ListeDoublementChainee* element1 <- liste
+        ListeDoublementChainee* element2 <- liste
+        POUR i DE 1 JUSQU'A position1 FAIRE
+            SI element1 = NULL ALORS
+                RETOURNER liste
+            FIN_SI
+            element1 <- element1.suivant
+        FIN_POUR
+        POUR i DE 1 JUSQU'A position2 FAIRE
+            SI element2 = NULL ALORS
+                RETOURNER liste
+            FIN_SI
+            element2 <- element2.suivant
+        FIN_POUR
+        SI element1 = NULL OU element2 = NULL ALORS
+            RETOURNER liste
+        FIN_SI
+        entier temp <- element1.valeur
+        element1.valeur <- element2.valeur
+        element2.valeur <- temp
+        RETOURNER liste
+    FIN_SI
+FIN_FONCTION
+// Complexité : O(n)
+
+// h) Écrire une fonction permettant de retourner le nombre d’élément de la liste (1 point)
+FONCTION nombreElements(liste : ListeDoublementChainee) : entier
+    entier compteur <- 0
+    ListeDoublementChainee* element <- liste
+    TANT_QUE element != NULL FAIRE
+        compteur <- compteur + 1
+        element <- element.suivant
+    FIN_TANT_QUE
+    RETOURNER compteur
+FIN_FONCTION
+// Complexité : O(n)
+
+// i) Écrire une fonction permettant d'inverser la liste. (3 points)
+FONCTION inverserListe(liste : ListeDoublementChainee) : ListeDoublementChainee
+    SI liste = NULL OU liste.suivant = NULL ALORS
+        RETOURNER liste
+    SINON
+        ListeDoublementChainee* element <- liste
+        ListeDoublementChainee* suivant <- NULL
+        TANT_QUE element != NULL FAIRE
+            suivant <- element.suivant
+            element.suivant <- element.precedent
+            element.precedent <- suivant
+            element <- suivant
+        FIN_TANT_QUE
+        RETOURNER liste
+    FIN_SI
+FIN_FONCTION
+// Complexité : O(n)
+
+// j) Écrire une fonction permettant de trier une liste dans l'ordre croissant. (3 points)
+FONCTION trierListe(liste : ListeDoublementChainee) : ListeDoublementChainee
+    SI liste = NULL OU liste.suivant = NULL ALORS
+        RETOURNER liste
+    SINON
+        ListeDoublementChainee* element1 <- liste
+        ListeDoublementChainee* element2 <- NULL
+        entier temp <- 0
+        TANT_QUE element1 != NULL FAIRE
+            element2 <- element1.suivant
+            TANT_QUE element2 != NULL FAIRE
+                SI element1.valeur > element2.valeur ALORS
+                    temp <- element1.valeur
+                    element1.valeur <- element2.valeur
+                    element2.valeur <- temp
+                FIN_SI
+                element2 <- element2.suivant
+            FIN_TANT_QUE
+            element1 <- element1.suivant
+        FIN_TANT_QUE
+        RETOURNER liste
+    FIN_SI
+FIN_FONCTION
+// Complexité : O(n^2)
+
+DEBUT_ALGORITHME
+	
+FIN_ALGORITHME
